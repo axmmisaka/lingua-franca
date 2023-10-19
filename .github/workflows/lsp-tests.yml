@@ -36,24 +36,18 @@ jobs:
       - name: Windows debug nessisities
         shell: pwsh
         run: |
-          Get-Command g++
-          Get-Command clang++
-          Get-ChildItem "C:\ProgramData\Chocolatey\bin\"
-          Get-ChildItem "C:\Program Files\LLVM\"
-          Get-ChildItem "C:\Program Files\LLVM\bin\"
-          Get-ChildItem "C:\mingw64\"
-          Get-ChildItem "C:\mingw64\bin\"
-          Remove-Item "C:\mingw64\bin\g++.exe"
-          Get-Command g++
-          Remove-Item "C:\Program Files\LLVM\bin\clang++.exe"
-          Get-Command clang++
+          Get-Command g++ -All
+          Get-Command clang++ -All
         if: ${{ runner.os == 'Windows' }}
       - name: Uninstall packages Windows
         run: |
-          del "C:\ProgramData\Chocolatey\bin\g++.exe"
-          del "C:\Strawberry\c\bin\g++.exe"
-          del "C:\Program Files\LLVM\bin\clang++.exe"
+          try { $exes=Get-Command "g++" -All; Remove-Item $exes; } catch { "There is no g++ present in pwsh PATH." }
+          try { $exes=Get-Command "clang++" -All; Remove-Item $exes; } catch { "There is no clang++ present in pwsh PATH." }
         if: ${{ runner.os == 'Windows' }}
+      - name: Windows debug nessisities
+        shell: bash
+        run: |
+          which g++
       - name: Setup Node.js environment
         uses: actions/setup-node@v3
         with:
