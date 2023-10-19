@@ -41,8 +41,8 @@ jobs:
         if: ${{ runner.os == 'Windows' }}
       - name: Uninstall packages Windows
         run: |
-          try { $exes=Get-Command "g++" -All; Remove-Item $exes; } catch { "There is no g++ present in pwsh PATH." }
-          try { $exes=Get-Command "clang++" -All; Remove-Item $exes; } catch { "There is no clang++ present in pwsh PATH." }
+          try { $exes=Get-Command "g++" -All; $exes | Remove-Item; } catch { "There is no g++ present in pwsh PATH." }
+          try { $exes=Get-Command "clang++" -All; $exes | Remove-Item; } catch { "There is no clang++ present in pwsh PATH." }
         if: ${{ runner.os == 'Windows' }}
       - name: Windows debug nessisities
         shell: bash
