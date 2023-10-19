@@ -38,7 +38,7 @@ jobs:
         run: |
           Get-Command g++
           Get-Command clang++
-          Get-ChocolateyPath
+          choco --version
         if: ${{ runner.os == 'Windows' }}
       - name: Uninstall packages Windows
         run: |
