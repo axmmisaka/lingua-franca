@@ -39,6 +39,7 @@ jobs:
           Get-Command g++
           Get-Command clang++
           choco --version
+          Get-ChildItem C:\ProgramData\Chocolatey\bin\
         if: ${{ runner.os == 'Windows' }}
       - name: Uninstall packages Windows
         run: |
