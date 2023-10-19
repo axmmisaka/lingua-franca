@@ -38,8 +38,15 @@ jobs:
         run: |
           Get-Command g++
           Get-Command clang++
-          choco --version
           Get-ChildItem C:\ProgramData\Chocolatey\bin\
+          Get-ChildItem C:\Program Files\LLVM\
+          Get-ChildItem C:\Program Files\LLVM\bin\
+          Get-ChildItem C:\mingw64\
+          Get-ChildItem C:\mingw64\bin\
+          Remove-Item C:\mingw64\bin\g++.exe
+          Get-Command g++
+          Remove-Item "C:\Program Files\LLVM\bin\clang++.exe"
+          Get-Command clang++
         if: ${{ runner.os == 'Windows' }}
       - name: Uninstall packages Windows
         run: |
