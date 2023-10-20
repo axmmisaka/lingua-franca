@@ -1,7 +1,13 @@
 name: Install RTI
 description: Build and install
+inputs:
+  lingua-franca-dir:
+    description: 'Path to the lingua-franca directory'
+    required: false
+
 runs:
   using: "composite"
   steps:
     - run: .github/actions/install-rti/install.sh
+      working-directory: ${{ inputs.lingua-franca-dir }}
       shell: bash
