@@ -18,6 +18,7 @@ jobs:
     uses: ./.github/workflows/c-tests.yml
     with:
       all-platforms: ${{ !github.event.pull_request.draft  }}
+      ref: network-structure
 
   # Run the C benchmark tests.
   benchmarking:
@@ -41,6 +42,7 @@ jobs:
     with:
       use-cpp: true
       all-platforms: ${{ !github.event.pull_request.draft  }}
+      ref: network-structure
 
   # Run the Uclid-based LF Verifier benchmarks.
   verifier:
